@@ -1,8 +1,11 @@
 import { createStore } from "vuex";
 
+import coaches, { CoachesState } from "@/store/modules/coaches/index.ts";
+
+export type StoreState = CoachesState;
+
 export default createStore({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {}
+  modules: {
+    coaches
+  }
 });

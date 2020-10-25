@@ -15,14 +15,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/coaches",
     name: "CoachesList",
-    component: CoachesList,
-    children: [
-      {
-        path: "/register",
-        name: "CoachRegister",
-        component: CoachRegister
-      }
-    ]
+    component: CoachesList
   },
   {
     path: "/coaches/:id",
@@ -30,11 +23,16 @@ const routes: Array<RouteRecordRaw> = [
     component: CoachDetails,
     children: [
       {
-        path: "/contact",
+        path: "contact",
         name: "ContactCoach",
         component: ContactCoach
       }
     ]
+  },
+  {
+    path: "/register",
+    name: "CoachRegister",
+    component: CoachRegister
   },
   {
     path: "/requests",
