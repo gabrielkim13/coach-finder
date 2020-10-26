@@ -21,6 +21,7 @@ const routes: Array<RouteRecordRaw> = [
     path: "/coaches/:id",
     name: "CoachDetails",
     component: CoachDetails,
+    props: true,
     children: [
       {
         path: "contact",

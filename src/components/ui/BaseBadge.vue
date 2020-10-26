@@ -12,7 +12,7 @@ export default defineComponent({
 
   props: {
     type: {
-      type: Object as PropType<"frontend" | "backend" | "career">,
+      type: String as PropType<"frontend" | "backend" | "career">,
       required: true
     },
     title: {

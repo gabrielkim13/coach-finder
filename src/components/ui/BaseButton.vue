@@ -25,7 +25,7 @@ export default defineComponent({
       default: "/"
     },
     mode: {
-      type: Object as PropType<"flat" | "outline" | null>,
+      type: String as PropType<"flat" | "outline" | null>,
       required: false,
       default: null
     }

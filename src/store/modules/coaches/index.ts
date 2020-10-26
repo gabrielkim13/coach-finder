@@ -7,7 +7,7 @@ export interface Coach {
   id: string;
   firstName: string;
   lastName: string;
-  areas: string[];
+  areas: ("frontend" | "backend" | "career")[];
   description: string;
   hourlyRate: number;
 }
