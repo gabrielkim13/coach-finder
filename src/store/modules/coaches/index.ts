@@ -2,6 +2,8 @@ import { Module } from "vuex";
 
 import { StoreState } from "@/store/index.ts";
 import getters from "@/store/modules/coaches/getters.ts";
+import actions from "@/store/modules/coaches/actions.ts";
+import mutations from "@/store/modules/coaches/mutations.ts";
 
 export interface Coach {
   id: string;
@@ -42,7 +44,11 @@ const coaches: Module<CoachesState, StoreState> = {
     ]
   },
 
-  getters
+  getters,
+
+  actions,
+
+  mutations
 };
 
 export default coaches;

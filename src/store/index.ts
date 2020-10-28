@@ -1,10 +1,20 @@
 import { createStore } from "vuex";
 
-import coaches, { CoachesState } from "@/store/modules/coaches/index.ts";
+import coaches from "@/store/modules/coaches/index.ts";
 
-export type StoreState = CoachesState;
+export interface StoreState {
+  userId: string;
+}
 
-export default createStore({
+export default createStore<StoreState>({
+  state: () => ({
+    userId: "c3"
+  }),
+
+  getters: {
+    userId: ({ userId }) => userId
+  },
+
   modules: {
     coaches
   }
