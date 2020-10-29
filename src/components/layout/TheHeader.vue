@@ -7,12 +7,30 @@
       <ul>
         <li>
           <router-link to="/coaches">All Coaches</router-link>
+        </li>
+        <li v-if="!isAuthenticated">
+          <router-link to="/auth">Login</router-link>
+        </li>
+        <li v-else>
           <router-link to="/requests">Requests</router-link>
         </li>
       </ul>
     </nav>
   </header>
 </template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
+
+export default defineComponent({
+  name: "TheHeader",
+
+  computed: {
+    ...mapGetters("auth", ["isAuthenticated"])
+  }
+});
+</script>
 
 <style lang="scss" scoped>
 header {

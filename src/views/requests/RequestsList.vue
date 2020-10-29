@@ -74,6 +74,8 @@ export default defineComponent({
     }
 
     this.isLoading = false;
+
+    console.log(this.requests);
   }
 });
 </script>

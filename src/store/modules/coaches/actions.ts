@@ -18,11 +18,8 @@ interface FirebaseCoaches {
 }
 
 const actions: ActionTree<CoachesState, StoreState> = {
-  registerCoach: async (
-    { rootGetters: { userId }, commit },
-    data: CoachFormData
-  ) => {
-    const coachId = userId;
+  registerCoach: async ({ rootGetters, commit }, data: CoachFormData) => {
+    const coachId = rootGetters["auth/userId"];
 
     const coach = {
       firstName: data.first,
@@ -32,8 +29,14 @@ const actions: ActionTree<CoachesState, StoreState> = {
       areas: data.areas
     } as Coach;
 
+    const params = {
+      params: {
+        auth: rootGetters["auth/token"]
+      }
+    };
+
     try {
-      await api.put(`/coaches/${coachId}.json`, coach);
+      await api.put(`/coaches/${coachId}.json`, coach, params);
 
       commit("registerCoach", { ...coach, id: coachId });
     } catch (err) {

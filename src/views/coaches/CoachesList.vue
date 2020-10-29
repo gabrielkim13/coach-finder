@@ -12,10 +12,13 @@
       <base-spinner v-if="isLoading" />
       <base-card v-else>
         <div class="controls">
-          <base-button mode="outline" @click="loadCoaches(true)"
-            >Refresh</base-button
-          >
-          <base-button v-if="!isCoach" link to="/register">
+          <base-button mode="outline" @click="loadCoaches(true)">
+            Refresh
+          </base-button>
+          <base-button v-if="!isAuthenticated" link to="/auth">
+            Login
+          </base-button>
+          <base-button v-if="isAuthenticated && !isCoach" link to="/register">
             Register as coach
           </base-button>
         </div>
@@ -76,6 +79,7 @@ export default defineComponent({
 
   computed: {
     ...mapGetters("coaches", ["hasCoaches", "isCoach"]),
+    ...mapGetters("auth", ["isAuthenticated"]),
     filteredCoaches(): Coach[] {
       const coaches = this.$store.getters["coaches/coaches"] as Coach[];
 

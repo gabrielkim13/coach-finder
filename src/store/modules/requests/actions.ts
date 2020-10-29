@@ -38,10 +38,17 @@ const actions: ActionTree<RequestsState, StoreState> = {
       throw new Error("Error sending request.");
     }
   },
-  loadRequests: async ({ rootState: { userId }, commit }) => {
+  loadRequests: async ({ rootGetters, commit }) => {
+    const params = {
+      params: {
+        auth: rootGetters["auth/token"]
+      }
+    };
+
     try {
       const response = await api.get<FirebaseRequests>(
-        `/requests/${userId}.json`
+        `/requests/${rootGetters["auth/userId"]}.json`,
+        params
       );
 
       const requests = [];

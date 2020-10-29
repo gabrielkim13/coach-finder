@@ -22,7 +22,7 @@
         :title="area"
         :type="area"
       />
-      <p>{{ description }}</p>
+      <p>{{ coach.description }}</p>
     </base-card>
   </div>
 </template>

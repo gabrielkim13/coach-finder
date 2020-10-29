@@ -6,9 +6,7 @@ const mutations: MutationTree<RequestsState> = {
   addRequest: ({ requests }, payload: Request) => {
     requests.push(payload);
   },
-  setRequests: (state, payload: Request[]) => {
-    state.requests = payload;
-  }
+  setRequests: (state, payload: Request[]) => (state.requests = payload)
 };
 
 export default mutations;

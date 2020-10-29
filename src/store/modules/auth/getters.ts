@@ -5,7 +5,8 @@ import { AuthState } from "@/store/modules/auth/index.ts";
 
 const getters: GetterTree<AuthState, StoreState> = {
   userId: ({ userId }) => userId,
-  token: ({ token }) => token
+  token: ({ token }) => token,
+  isAuthenticated: ({ token }) => !!token
 };
 
 export default getters;

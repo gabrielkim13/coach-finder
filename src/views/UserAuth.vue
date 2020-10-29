@@ -94,7 +94,10 @@ export default defineComponent({
         switch (this.mode) {
           case "login":
             await this.login({ email: this.email, password: this.password });
-            break;
+
+            this.$router.replace("/coaches");
+
+            return;
 
           case "signup":
             await this.signup({ email: this.email, password: this.password });
