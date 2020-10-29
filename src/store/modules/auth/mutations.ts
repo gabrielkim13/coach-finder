@@ -6,7 +6,6 @@ const mutations: MutationTree<AuthState> = {
   setUser: (state, payload: AuthState) => {
     state.userId = payload.userId;
     state.token = payload.token;
-    state.tokenExpiration = payload.tokenExpiration;
   }
 };
 

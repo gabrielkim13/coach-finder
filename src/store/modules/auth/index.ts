@@ -8,7 +8,6 @@ import mutations from "@/store/modules/auth/mutations.ts";
 export interface AuthState {
   userId: string;
   token: string;
-  tokenExpiration: number;
 }
 
 const Authes: Module<AuthState, StoreState> = {
@@ -16,8 +15,7 @@ const Authes: Module<AuthState, StoreState> = {
 
   state: {
     userId: "",
-    token: "",
-    tokenExpiration: 0
+    token: ""
   },
 
   getters,

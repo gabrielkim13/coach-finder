@@ -9,6 +9,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import { mapActions } from "vuex";
 
 import TheHeader from "@/components/layout/TheHeader.vue";
 
@@ -17,6 +18,14 @@ export default defineComponent({
 
   components: {
     TheHeader
+  },
+
+  methods: {
+    ...mapActions("auth", ["tryLogin"])
+  },
+
+  created() {
+    this.tryLogin();
   }
 });
 </script>
