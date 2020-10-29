@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 
-import coaches from "@/store/modules/coaches/index.ts";
+import coaches from "@/store/modules/coaches";
+import requests from "@/store/modules/requests";
 
 export interface StoreState {
   userId: string;
@@ -16,6 +17,7 @@ export default createStore<StoreState>({
   },
 
   modules: {
-    coaches
+    coaches,
+    requests
   }
 });

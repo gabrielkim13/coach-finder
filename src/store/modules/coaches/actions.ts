@@ -7,8 +7,6 @@ import { CoachFormData } from "@/components/coaches/CoachForm.vue";
 
 const actions: ActionTree<CoachesState, StoreState> = {
   registerCoach: ({ rootGetters: { userId }, commit }, data: CoachFormData) => {
-    console.log("oi");
-
     const coach = {
       id: userId,
       firstName: data.first,

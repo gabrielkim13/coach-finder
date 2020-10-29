@@ -5,7 +5,7 @@
       <input id="email" type="email" v-model.trim="email" />
     </div>
     <div class="form-control">
-      <label for="message">E-mail</label>
+      <label for="message">Message</label>
       <textarea id="message" rows="5" v-model.trim="message" />
     </div>
 
@@ -23,6 +23,12 @@
 import { defineComponent } from "vue";
 
 import BaseButton from "@/components/ui/BaseButton.vue";
+
+export interface ContactCoachFormData {
+  coachId: string;
+  email: string;
+  message: string;
+}
 
 export default defineComponent({
   name: "ContactCoach",
@@ -49,7 +55,15 @@ export default defineComponent({
         return;
       }
 
-      console.log({ email: this.email, message: this.message });
+      const request = {
+        coachId: this.$route.params.id,
+        email: this.email,
+        message: this.message
+      };
+
+      this.$store.dispatch("requests/addRequest", request);
+
+      this.$router.replace("/coaches");
     }
   }
 });
