@@ -5,6 +5,7 @@ import CoachDetails from "@/views/coaches/CoachDetails.vue";
 import CoachRegister from "@/views/coaches/CoachRegister.vue";
 import ContactCoach from "@/views/requests/ContactCoach.vue";
 import RequestsList from "@/views/requests/RequestsList.vue";
+import UserAuth from "@/views/UserAuth.vue";
 import NotFound from "@/views/NotFound.vue";
 
 const routes: Array<RouteRecordRaw> = [
@@ -39,6 +40,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/requests",
     name: "RequestsList",
     component: RequestsList
+  },
+  {
+    path: "/auth",
+    name: "UserAuth",
+    component: UserAuth
   },
   {
     path: "/:pathMatch(.*)*",
