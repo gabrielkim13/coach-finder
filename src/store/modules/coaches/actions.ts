@@ -40,7 +40,11 @@ const actions: ActionTree<CoachesState, StoreState> = {
       throw new Error("Error on coach registration.");
     }
   },
-  loadCoaches: async ({ commit }) => {
+  loadCoaches: async ({ getters, commit }, data: { forceUpdate: boolean }) => {
+    const isForceUpdate = !!data && data.forceUpdate;
+
+    if (!isForceUpdate && !getters.shouldUpdate) return;
+
     try {
       const response = await api.get<FirebaseCoaches>("/coaches.json");
 
@@ -61,6 +65,7 @@ const actions: ActionTree<CoachesState, StoreState> = {
       }
 
       commit("setCoaches", coaches);
+      commit("setFetchTimestamp");
     } catch (err) {
       throw new Error("Error loading coaches.");
     }

@@ -11,7 +11,9 @@
     <base-spinner v-if="isLoading" />
     <base-card v-else>
       <div class="controls">
-        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches(true)"
+          >Refresh</base-button
+        >
         <base-button v-if="!isCoach" link to="/register">
           Register as coach
         </base-button>
@@ -85,9 +87,9 @@ export default defineComponent({
     setFilters(updatedFilters: ChangeFiltersEvent) {
       this.activeFilters = updatedFilters;
     },
-    async loadCoaches() {
+    async loadCoaches(forceUpdate = false) {
       try {
-        await this.$store.dispatch("coaches/loadCoaches");
+        await this.$store.dispatch("coaches/loadCoaches", { forceUpdate });
       } catch (err) {
         this.error = err.message || "Something went wrong!";
       }

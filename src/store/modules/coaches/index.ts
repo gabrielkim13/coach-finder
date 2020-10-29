@@ -15,6 +15,7 @@ export interface Coach {
 }
 
 export interface CoachesState {
+  lastFetch: number;
   coaches: Coach[];
 }
 
@@ -22,6 +23,7 @@ const coaches: Module<CoachesState, StoreState> = {
   namespaced: true,
 
   state: {
+    lastFetch: 0,
     coaches: [
       {
         id: "c1",

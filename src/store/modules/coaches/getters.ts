@@ -7,7 +7,9 @@ const getters: GetterTree<CoachesState, StoreState> = {
   coaches: ({ coaches }) => coaches,
   hasCoaches: ({ coaches }) => !!coaches && coaches.length > 0,
   isCoach: ({ coaches }, getters, rootState, { userId }) =>
-    coaches.some(coach => coach.id === userId)
+    coaches.some(coach => coach.id === userId),
+  shouldUpdate: ({ lastFetch }) =>
+    (new Date().getTime() - lastFetch) / 1000 > 60
 };
 
 export default getters;
