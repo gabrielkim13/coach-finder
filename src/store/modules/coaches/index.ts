@@ -9,7 +9,7 @@ export interface Coach {
   id: string;
   firstName: string;
   lastName: string;
-  areas: ("frontend" | "backend" | "career")[];
+  areas: Array<"frontend" | "backend" | "career">;
   description: string;
   hourlyRate: number;
 }

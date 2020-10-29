@@ -4,9 +4,10 @@
   </section>
 
   <section>
-    <base-card>
+    <base-spinner v-if="isLoading" />
+    <base-card v-else>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
         <base-button v-if="!isCoach" link to="/register">
           Register as coach
         </base-button>
@@ -34,6 +35,7 @@ import { mapGetters } from "vuex";
 
 import BaseButton from "@/components/ui/BaseButton.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
+import BaseSpinner from "@/components/ui/BaseSpinner.vue";
 import CoachFilter, {
   ChangeFiltersEvent
 } from "@/components/coaches/CoachFilter.vue";
@@ -47,11 +49,13 @@ export default defineComponent({
   components: {
     BaseButton,
     BaseCard,
+    BaseSpinner,
     CoachFilter,
     CoachItem
   },
 
   data: () => ({
+    isLoading: true,
     activeFilters: {
       frontend: true,
       backend: true,
@@ -73,7 +77,16 @@ export default defineComponent({
   methods: {
     setFilters(updatedFilters: ChangeFiltersEvent) {
       this.activeFilters = updatedFilters;
+    },
+    async loadCoaches() {
+      await this.$store.dispatch("coaches/loadCoaches");
     }
+  },
+
+  async created() {
+    await this.loadCoaches();
+
+    this.isLoading = false;
   }
 });
 </script>
