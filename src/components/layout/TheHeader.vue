@@ -14,6 +14,9 @@
         <li v-else>
           <router-link to="/requests">Requests</router-link>
         </li>
+        <li v-if="isAuthenticated">
+          <base-button @click="logout">Logout</base-button>
+        </li>
       </ul>
     </nav>
   </header>
@@ -21,13 +24,23 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+
+import BaseButton from "@/components/ui/BaseButton.vue";
 
 export default defineComponent({
   name: "TheHeader",
 
+  components: {
+    BaseButton
+  },
+
   computed: {
     ...mapGetters("auth", ["isAuthenticated"])
+  },
+
+  methods: {
+    ...mapActions("auth", ["logout"])
   }
 });
 </script>

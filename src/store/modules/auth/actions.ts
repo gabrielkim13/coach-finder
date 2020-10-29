@@ -75,6 +75,13 @@ const actions: ActionTree<AuthState, StoreState> = {
     } catch (err) {
       throw new Error("Error signing up.");
     }
+  },
+  logout({ commit }) {
+    commit("setUser", {
+      userId: "",
+      token: "",
+      tokenExpiration: 0
+    } as AuthState);
   }
 };
 
