@@ -37,7 +37,7 @@ const actions: ActionTree<CoachesState, StoreState> = {
 
       commit("registerCoach", { ...coach, id: coachId });
     } catch (err) {
-      console.error(err);
+      throw new Error("Error on coach registration.");
     }
   },
   loadCoaches: async ({ commit }) => {
@@ -62,7 +62,7 @@ const actions: ActionTree<CoachesState, StoreState> = {
 
       commit("setCoaches", coaches);
     } catch (err) {
-      console.log(err);
+      throw new Error("Error loading coaches.");
     }
   }
 };

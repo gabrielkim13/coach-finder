@@ -1,4 +1,8 @@
 <template>
+  <base-dialog :show="!!error" title="An error ocurred!" @close="handleError">
+    <p>{{ error }}</p>
+  </base-dialog>
+
   <section>
     <coach-filter @change-filters="setFilters" />
   </section>
@@ -35,6 +39,7 @@ import { mapGetters } from "vuex";
 
 import BaseButton from "@/components/ui/BaseButton.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
+import BaseDialog from "@/components/ui/BaseDialog.vue";
 import BaseSpinner from "@/components/ui/BaseSpinner.vue";
 import CoachFilter, {
   ChangeFiltersEvent
@@ -49,6 +54,7 @@ export default defineComponent({
   components: {
     BaseButton,
     BaseCard,
+    BaseDialog,
     BaseSpinner,
     CoachFilter,
     CoachItem
@@ -56,6 +62,7 @@ export default defineComponent({
 
   data: () => ({
     isLoading: true,
+    error: "",
     activeFilters: {
       frontend: true,
       backend: true,
@@ -79,7 +86,14 @@ export default defineComponent({
       this.activeFilters = updatedFilters;
     },
     async loadCoaches() {
-      await this.$store.dispatch("coaches/loadCoaches");
+      try {
+        await this.$store.dispatch("coaches/loadCoaches");
+      } catch (err) {
+        this.error = err.message || "Something went wrong!";
+      }
+    },
+    handleError() {
+      this.error = "";
     }
   },
 
