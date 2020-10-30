@@ -23,3 +23,6 @@ pnpm-debug.log*
 *.sw?
 
 .env
+
+.firebaserc
+.firebase
