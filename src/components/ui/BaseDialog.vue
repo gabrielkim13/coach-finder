@@ -21,10 +21,12 @@
   </teleport>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue";
+
 import BaseButton from "@/components/ui/BaseButton.vue";
 
-export default {
+export default defineComponent({
   name: "BaseDialog",
   components: {
     BaseButton
@@ -53,7 +55,7 @@ export default {
       this.$emit("close");
     }
   }
-};
+});
 </script>
 
 <style scoped>

@@ -41,12 +41,11 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineAsyncComponent, defineComponent } from "vue";
 import { mapGetters } from "vuex";
 
 import BaseButton from "@/components/ui/BaseButton.vue";
 import BaseCard from "@/components/ui/BaseCard.vue";
-import BaseDialog from "@/components/ui/BaseDialog.vue";
 import BaseSpinner from "@/components/ui/BaseSpinner.vue";
 import CoachFilter, {
   ChangeFiltersEvent
@@ -61,7 +60,9 @@ export default defineComponent({
   components: {
     BaseButton,
     BaseCard,
-    BaseDialog,
+    BaseDialog: defineAsyncComponent(() =>
+      import("@/components/ui/BaseDialog.vue")
+    ),
     BaseSpinner,
     CoachFilter,
     CoachItem

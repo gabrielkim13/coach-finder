@@ -1,14 +1,19 @@
+import { defineAsyncComponent } from "vue";
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 
 import CoachesList from "@/views/coaches/CoachesList.vue";
 import CoachDetails from "@/views/coaches/CoachDetails.vue";
-import CoachRegister from "@/views/coaches/CoachRegister.vue";
 import ContactCoach from "@/views/requests/ContactCoach.vue";
 import RequestsList from "@/views/requests/RequestsList.vue";
-import UserAuth from "@/views/UserAuth.vue";
-import NotFound from "@/views/NotFound.vue";
 
 import store from "@/store";
+
+// Async components for routes that are used at most once.
+const CoachRegister = defineAsyncComponent(() =>
+  import("@/views/coaches/CoachRegister.vue")
+);
+const UserAuth = defineAsyncComponent(() => import("@/views/UserAuth.vue"));
+const NotFound = defineAsyncComponent(() => import("@/views/NotFound.vue"));
 
 const routes: Array<RouteRecordRaw> = [
   {
